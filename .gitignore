@@ -1,0 +1,6 @@
+# Generated Files
+build/
+node_modules/
+
+# System Files
+.DS_Store
