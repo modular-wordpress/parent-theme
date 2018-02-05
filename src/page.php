@@ -15,6 +15,7 @@
 get_header(); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
+			Hello, world.
 			<?php
 				if(have_rows("content_modules")) {
 					while(have_rows("content_modules")) {
