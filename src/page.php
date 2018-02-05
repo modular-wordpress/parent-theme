@@ -13,26 +13,25 @@
  */
 
 get_header(); ?>
-
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
-
 			<?php
-			while ( have_posts() ) : the_post();
+				if(have_rows("content_modules")) {
+					while(have_rows("content_modules")) {
+						the_row();
 
-				get_template_part( 'template-parts/content', 'page' );
+						$layout = get_row_layout();
 
-				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || get_comments_number() ) :
-					comments_template();
-				endif;
-
-			endwhile; // End of the loop.
+						if(locate_template("content_modules/{$layout}/module-{$layout}") !== "") {
+							get_template_part("content_modules/{$layout}/module", $layout);
+						} else {
+							get_template_part("content_modules/fallbacks/missing");
+						}
+					}
+				}
 			?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
+		</main>
+	</div>
 <?php
 get_sidebar();
 get_footer();
