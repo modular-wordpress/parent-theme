@@ -74,7 +74,7 @@ module.exports = {
                     `${__dirname}/src/content_modules/*.php`,
                     `${__dirname}/src/content_modules/**/*.php`
                 ])
-                .pipe(gulp.dest(`${outputLocation}/js/`));
+                .pipe(gulp.dest(`${outputLocation}/content_modules/`));
         });
     }
 };
