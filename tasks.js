@@ -5,10 +5,10 @@ module.exports = {
     /**
      * Creates all tasks for the parent theme. These include:
      *   - {prefix}-build-css
-     * 
-     * @param {String} prefix Defaults to "parent". The prefix to put at the 
+     *
+     * @param {String} prefix Defaults to "parent". The prefix to put at the
      *  beginning of all tasks generated.
-     * 
+     *
      * @param {String} outputLocation The path (without the trailing slash)
      *  where the parent build should output to.
      */
@@ -40,7 +40,8 @@ module.exports = {
             `${prefix}-copy-template-parts-static-files`,
             `${prefix}-copy-inc-static-files`,
             `${prefix}-copy-layouts-static-files`,
-            `${prefix}-copy-js-static-files`
+            `${prefix}-copy-js-static-files`,
+            `${prefix}-copy-content-modules-static-files`
         ]);
 
         gulp.task(`${prefix}-copy-primary-static-files`, function() {
@@ -65,6 +66,14 @@ module.exports = {
 
         gulp.task(`${prefix}-copy-js-static-files`, function() {
             return gulp.src([`${__dirname}/src/js/*.js`])
+                .pipe(gulp.dest(`${outputLocation}/js/`));
+        });
+
+        gulp.task(`${prefix}-copy-content-modules-static-files`, function() {
+            return gulp.src([
+                    `${__dirname}/src/content_modules/*.php`,
+                    `${__dirname}/src/content_modules/**/*.php`
+                ])
                 .pipe(gulp.dest(`${outputLocation}/js/`));
         });
     }
