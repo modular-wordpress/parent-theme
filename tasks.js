@@ -76,5 +76,28 @@ module.exports = {
                 ])
                 .pipe(gulp.dest(`${outputLocation}/content_modules/`));
         });
+    },
+    /**
+     * Generates all default Gulp tasks for the child theme. Includes:
+     * 
+     *   - {prefix}-copy-modules
+     */
+    generateChildTasks: function(prefix = "child",
+        outputLocation = `${__dirname}/build/child`) {
+        const MWPM_CONFIG = require(`${__dirname}/mwpm.config.json`);
+        const modsDir = MWPM_CONFIG.modulesLocation;
+        
+        const MODULE_SOURCES = [
+            `${__dirname}/${modsDir}/*/**`,
+            `${__dirname}/${modsDir}/*`,
+            `${__dirname}/src/content_modules/**/*`,
+            `${__dirname}/src/content_modules/**/*`
+        ];
+        
+        gulp.task(`${prefix}-copy-modules`, function() {
+            return gulp.src(MODULE_SOURCES)
+                .pipe(gulp.dest(outputLocation));
+        });
+        
     }
 };
