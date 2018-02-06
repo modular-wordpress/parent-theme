@@ -22,8 +22,8 @@ get_header(); ?>
 
 						$layout = get_row_layout();
 
-						if(locate_template("content_modules/{$layout}/module-{$layout}.php") !== "") {
-							get_template_part("content_modules/{$layout}/module", $layout);
+						if(locate_template("content_modules/{$layout}/template.php") !== "") {
+							get_template_part("content_modules/{$layout}/template");
 						} else {
 							get_template_part("content_modules/fallbacks/missing");
 						}

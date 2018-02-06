@@ -79,24 +79,26 @@ module.exports = {
     },
     /**
      * Generates all default Gulp tasks for the child theme. Includes:
-     * 
+     *
      *   - {prefix}-copy-modules
+     *   - {prefix}-copy-src
      */
     generateChildTasks: function(prefix = "child",
         outputLocation = `${__dirname}/build/child`) {
-        const MWPM_CONFIG = require(`${__dirname}/mwpm.config.json`);
+        const wd = process.cwd();
+        const MWPM_CONFIG = require(`${wd}/mwpm.config.json`);
         const modsDir = MWPM_CONFIG.modulesLocation;
-        
+
         const MODULE_SOURCES = [
-            `${__dirname}/${modsDir}/*/**`,
-            `${__dirname}/${modsDir}/*`
+            `${wd}/${modsDir}/*/**`,
+            `${wd}/${modsDir}/*`
         ];
 
         const SRC_SOURCES = [
-            `${__dirname}/src/*`,
-            `${__dirname}/src/**/*`
+            `${wd}/src/*`,
+            `${wd}/src/**/*`
         ];
-        
+
         gulp.task(`${prefix}-copy-modules`, function() {
             return gulp.src(MODULE_SOURCES)
                 .pipe(gulp.dest(`${outputLocation}/content_modules/`));
@@ -106,6 +108,6 @@ module.exports = {
             return gulp.src(SRC_SOURCES)
                 .pipe(gulp.dest(outputLocation));
         });
-        
+
     }
 };
