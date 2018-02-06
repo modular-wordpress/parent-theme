@@ -89,13 +89,21 @@ module.exports = {
         
         const MODULE_SOURCES = [
             `${__dirname}/${modsDir}/*/**`,
-            `${__dirname}/${modsDir}/*`,
-            `${__dirname}/src/content_modules/**/*`,
-            `${__dirname}/src/content_modules/**/*`
+            `${__dirname}/${modsDir}/*`
+        ];
+
+        const SRC_SOURCES = [
+            `${__dirname}/src/*`,
+            `${__dirname}/src/**/*`
         ];
         
         gulp.task(`${prefix}-copy-modules`, function() {
             return gulp.src(MODULE_SOURCES)
+                .pipe(gulp.dest(`${outputLocation}/content_modules/`));
+        });
+
+        gulp.task(`${prefix}-copy-src`, function() {
+            return gulp.src(SRC_SOURCES)
                 .pipe(gulp.dest(outputLocation));
         });
         
